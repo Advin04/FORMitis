@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+  /* CHAT / Cyberpunk Theme Variables */
+  --bg-color: #050a08;
+  --panel-bg: #0d1712;
+  --border-color: #1a3326;
+  --text-primary: #00ff66;
+  --text-secondary: #00b347;
+  --alert-color: #ff3300;
+  --warning-color: #ffaa00;
+  --accent-glow: 0 0 10px rgba(0, 255, 102, 0.4);
+  --alert-glow: 0 0 15px rgba(255, 51, 0, 0.6);
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+
+  /* Backward Compatibility for Form's UI / WhatsAppInterface */
+  --primary: #00ff66; 
+  --primary-hover: #00b347; 
+  --bg: #050a08; 
+  --glass-bg: #0d1712; 
+  --glass-border: #1a3326; 
+  --text-main: #00ff66; 
+  --text-muted: #00b347; 
+  --error: #ff3300; 
+  --success: #00ff66;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  background-image: 
+    linear-gradient(rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  min-height: 100vh;
+}
+
+/* CRT Scanline effect */
+body::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+/* DASHBOARD & PANEL STYLES (From CHAT) */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--text-primary);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 255, 102, 0.1);
+}
+
+.title-section h1 {
+  margin-bottom: 5px;
+  text-shadow: var(--accent-glow);
+}
+
+.panels-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  flex: 1;
+}
+
+.panel {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--text-primary);
+  box-shadow: var(--accent-glow);
+}
+
+/* Auth Specific */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+.auth-panel {
+  width: 400px;
+  max-width: 90%;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-color: var(--text-primary);
+  box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.2);
+}
+
+.btn-transmit {
+  width: 100%;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  padding: 15px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-transmit:hover {
+  background: rgba(0, 255, 102, 0.3);
+  box-shadow: var(--accent-glow);
+}
+
+.btn-transmit:active {
+  transform: translateY(2px);
+}
+
+/* Table / Action Buttons (For Admin Dashboard) */
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--text-secondary);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: rgba(0, 179, 71, 0.2);
+  color: var(--text-primary);
+}
+
+.btn-delete {
+  border-color: var(--alert-color);
+  color: var(--alert-color);
+}
+.btn-delete:hover {
+  background: rgba(255, 51, 0, 0.2);
+  color: var(--alert-color);
+  box-shadow: var(--alert-glow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: rgba(0, 255, 102, 0.05);
+  padding: 12px;
+  text-align: left;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+tr:hover td {
+  background: rgba(0, 255, 102, 0.05);
+}
+
+/* Re-using Link text from before */
+.link-text {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link-text:hover {
+  color: var(--text-primary);
+  text-shadow: var(--accent-glow);
+}
