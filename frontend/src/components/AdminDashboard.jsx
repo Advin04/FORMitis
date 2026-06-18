@@ -61,6 +61,10 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
   return (
     <div className="dashboard-container">
       <header className="header">
@@ -70,6 +74,8 @@ const AdminDashboard = () => {
             <span>Tactical Operator Management</span>
             <span>|</span>
             <span>COMMANDER: {localStorage.getItem('username') || 'ADMIN'}</span>
+            <span>|</span>
+            <span>{currentDate}</span>
           </div>
         </div>
         <div className="status-container" style={{ textAlign: 'right' }}>
@@ -123,6 +129,7 @@ const AdminDashboard = () => {
                     <th>ID</th>
                     <th>OPERATOR</th>
                     <th>CLEARANCE</th>
+                    <th>REGISTRATION DATE</th>
                     <th>STATUS</th>
                     <th>ACTIONS</th>
                   </tr>
@@ -142,6 +149,9 @@ const AdminDashboard = () => {
                         }}>
                           {user.role}
                         </span>
+                      </td>
+                      <td style={{ color: 'var(--text-secondary)' }}>
+                        {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB') : 'N/A'}
                       </td>
                       <td>
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary)' }}>

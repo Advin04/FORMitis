@@ -46,7 +46,10 @@ function App() {
               <div className="auth-container">
                 <div className="panel auth-panel" style={{ textAlign: 'center' }}>
                   <h1 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>SYSTEM ACCESS GRANTED</h1>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>OPERATOR LOGGED IN SUCCESSFULLY</p>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '10px' }}>OPERATOR LOGGED IN SUCCESSFULLY</p>
+                  <p style={{ color: 'var(--text-primary)', marginBottom: '30px', fontFamily: 'var(--font-mono)' }}>
+                    {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                     <Link to="/chat" className="btn-transmit" style={{ textDecoration: 'none', display: 'block' }}>
